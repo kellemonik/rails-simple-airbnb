@@ -1,4 +1,5 @@
 class FlatsController < ApplicationController
+
   def index
     @flats = Flat.all
   end
@@ -34,8 +35,7 @@ class FlatsController < ApplicationController
   def destroy
     @flat = Flat.find(params[:id])
     @flat.destroy
-    # No need for app/views/restaurants/destroy.html.erb
-    redirect_to flats_path(@path)
+    redirect_to flats_path, status: :see_other
   end
 
   private
@@ -44,3 +44,5 @@ class FlatsController < ApplicationController
     params.require(:flat).permit(:name, :address, :description, :price_per_night, :number_of_guests)
   end
 end
+
+
